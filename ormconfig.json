@@ -1,0 +1,10 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "divar",
+    "password": "password",
+    "database": "divar",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": true
+  }
