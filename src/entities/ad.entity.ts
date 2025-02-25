@@ -1,6 +1,13 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, Point, PrimaryGeneratedColumn } from "typeorm";
-import { Category } from "./category.entity";
-import { User } from "./user.entity";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  Point,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Category } from './category.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Ad {
@@ -34,15 +41,20 @@ export class Ad {
   @Column()
   province: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   state: string;
 
   @Column('jsonb')
-  price: { type: 'fixed' | 'negotiable'; value?: number };
+  price: Price;
 
   @ManyToOne(() => User)
   seller: User;
 
   @CreateDateColumn()
   createdAt: Date;
+}
+
+interface Price {
+  type: 'fixed' | 'negotiable';
+  value?: number;
 }

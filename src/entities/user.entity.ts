@@ -1,6 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Ad } from "./ad.entity";
-import { Chat } from "./chat.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Ad } from './ad.entity';
+import { Chat } from './chat.entity';
 
 @Entity()
 export class User {
@@ -11,7 +11,7 @@ export class User {
   phone: string;
 
   @Column()
-  role: 'ADMIN' | 'USER';
+  role: Role;
 
   @OneToMany(() => Ad, (ad) => ad.seller)
   ads: Ad[];
@@ -22,3 +22,5 @@ export class User {
   @OneToMany(() => Chat, (chat) => chat.seller)
   chatsAsSeller: Chat[];
 }
+
+type Role = 'ADMIN' | 'USER';
