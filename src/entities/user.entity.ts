@@ -10,6 +10,9 @@ export class User {
   @Column({ unique: true })
   phone: string;
 
+  @Column()
+  role: 'ADMIN' | 'USER';
+
   @OneToMany(() => Ad, (ad) => ad.seller)
   ads: Ad[];
 
