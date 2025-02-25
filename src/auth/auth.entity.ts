@@ -1,0 +1,17 @@
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../user/user.entity';
+
+@Entity()
+export class Otp {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  otpCode: string;
+
+  @Column({ type: 'timestamp' })
+  expirationTime: Date;
+
+  @ManyToOne(() => User, (user) => user.otps)
+  user: User;
+}

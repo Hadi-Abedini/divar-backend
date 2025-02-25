@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Ad } from './ad.entity';
-import { Chat } from './chat.entity';
+import { Ad } from '../entities/ad.entity';
+import { Chat } from '../entities/chat.entity';
+import { Otp } from '../auth/auth.entity';
 
 @Entity()
 export class User {
@@ -21,6 +22,15 @@ export class User {
 
   @OneToMany(() => Chat, (chat) => chat.seller)
   chatsAsSeller: Chat[];
+
+  @Column({ default: false })
+  isVerified: boolean;
+
+  @Column({ nullable: true })
+  refreshToken?: string;
+
+  @OneToMany(() => Otp, (otp) => otp.user)
+  otps: Otp[];
 }
 
 type Role = 'ADMIN' | 'USER';

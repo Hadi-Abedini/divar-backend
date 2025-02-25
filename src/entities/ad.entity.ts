@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from './category.entity';
-import { User } from './user.entity';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class Ad {
