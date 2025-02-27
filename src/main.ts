@@ -8,7 +8,7 @@ import { UsersService } from './users/users.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // app.use(passport.initialize())
+  app.use(passport.initialize())
   // app.use(passport.session())
   
   const userService = app.get(UsersService);
