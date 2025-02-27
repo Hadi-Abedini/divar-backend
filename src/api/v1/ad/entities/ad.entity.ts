@@ -6,8 +6,8 @@ import {
   Point,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Category } from './category.entity';
-import { User } from '../user/user.entity';
+import { Category } from '../../category/entities/category.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Ad {

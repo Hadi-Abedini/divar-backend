@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { User } from 'src/user/user.entity';
-import { Otp } from 'src/auth/auth.entity';
+import { User } from 'entities/user.entity';
+import { Otp } from 'entities/auth.entity';
 import { SmsService } from './sms.service';
 
 @Injectable()

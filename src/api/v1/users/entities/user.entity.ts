@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Ad } from '../entities/ad.entity';
-import { Chat } from '../entities/chat.entity';
-import { Otp } from '../auth/auth.entity';
+import { Ad } from '../../ad/entities/ad.entity';
+import { Chat } from 'entities/chat.entity';
+import { Otp } from '../../auth/entities/auth.entity';
 
 @Entity()
 export class User {

@@ -3,10 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthController } from 'src/auth/auth.controller';
-import { User } from 'src/user/user.entity';
+import { User } from 'entities/user.entity';
 import { AuthService } from 'src/auth/auth.service';
 import { SmsService } from 'src/auth/sms.service';
-import { Otp } from './auth.entity';
+import { Otp } from '../../entities/auth.entity';
 
 @Module({
   imports: [
