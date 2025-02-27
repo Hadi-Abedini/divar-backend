@@ -7,7 +7,7 @@ export class Otp {
   id: string;
 
   @Column()
-  otpCode: string;
+  code: string;
 
   @Column({ type: 'timestamp' })
   expirationTime: Date;

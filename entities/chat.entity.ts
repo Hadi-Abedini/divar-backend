@@ -1,6 +1,6 @@
+import { Ad } from "src/ad/entities/ad.entity";
+import { User } from "src/users/entities/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./user.entity";
-import { Ad } from "./ad.entity";
 
 @Entity()
 export class Chat {

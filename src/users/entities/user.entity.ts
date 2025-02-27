@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Ad } from '../../ad/entities/ad.entity';
 import { Chat } from 'entities/chat.entity';
-import { Otp } from '../../auth/entities/auth.entity';
+import { Otp } from '../../auth/entities/otp.entity';
 
 @Entity()
 export class User {
@@ -12,19 +12,16 @@ export class User {
   phone: string;
 
   @Column()
-  role: Role;
+  role: UserRole;
 
   @OneToMany(() => Ad, (ad) => ad.seller)
   ads: Ad[];
 
-  @OneToMany(() => Chat, (chat) => chat.buyer)
-  chatsAsBuyer: Chat[];
+  // @OneToMany(() => Chat, (chat) => chat.buyer)
+  // chatsAsBuyer: Chat[];
 
-  @OneToMany(() => Chat, (chat) => chat.seller)
-  chatsAsSeller: Chat[];
-
-  @Column({ default: false })
-  isVerified: boolean;
+  // @OneToMany(() => Chat, (chat) => chat.seller)
+  // chatsAsSeller: Chat[];
 
   @Column({ nullable: true })
   refreshToken?: string;
@@ -33,4 +30,4 @@ export class User {
   otps: Otp[];
 }
 
-type Role = 'ADMIN' | 'USER';
+export type UserRole = 'ADMIN' | 'USER';

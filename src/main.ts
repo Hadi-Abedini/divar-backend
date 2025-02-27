@@ -1,18 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { UserService } from './user/user.service';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import * as passport from 'passport'
+import { UsersService } from './users/users.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // app.use(passport.initialize())
+  // app.use(passport.session())
   
-  const userService = app.get(UserService);
+  const userService = app.get(UsersService);
   
-  const adminExists = await userService.isAdminExists();
+  const adminExists = await userService.findUserAdmin();
   
   if (!adminExists) {
-    await userService.createAdminUser();
+    await userService.createAdmin();
   }
 
   const config = new DocumentBuilder()
@@ -26,7 +30,8 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document);
 
   app.useGlobalInterceptors(new ResponseInterceptor());
+  app.setGlobalPrefix('api/v1');
 
-  await app.listen(process.env.PORT ?? 3000,'api/v1');
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
