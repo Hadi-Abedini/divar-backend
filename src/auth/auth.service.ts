@@ -71,7 +71,7 @@ export class AuthService {
   async verify_code(data: VerifyOtpDto) {
     const user = await this.userService.findUserByPhone(data.phone);
     const otps = await this.otpRepository.find({
-      where: { user: { phone: data.phone } },
+      where: { user: { phone: data.phone }, is_used: false },
     });
 
     if (!user) {
@@ -80,9 +80,12 @@ export class AuthService {
 
     const otp = otps.find((otp) => otp.code === data.code);
 
-    if (!otp || otp.expirationTime < new Date()) {
+    if (!otp || otp.is_used || otp.expirationTime < new Date()) {
       throw new HttpException('Invalid or expired OTP', 400);
     }
+
+    otp.is_used = true;
+    await this.otpRepository.save(otp);
 
     const accessToken = this.jwtService.sign(
       { userId: user.id, phone: data.phone },

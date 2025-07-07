@@ -9,6 +9,9 @@ export class Otp {
   @Column()
   code: string;
 
+  @Column({ nullable: true, default: false })
+  is_used: boolean;
+
   @Column({ type: 'timestamp' })
   expirationTime: Date;
 
